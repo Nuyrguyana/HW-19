@@ -20,9 +20,7 @@ export class DonateList {
         const divDonatesContainerDonates = document.createElement('div')
         divDonatesContainerDonates.className = 'donates-container__donates'
 
-        this.#donates.forEach((donate) => {
-            this.#donatesContainer.append(this.renderItem(donate))
-        })
+        this.renderDonate(this.#donates)
 
         // divDonatesContainerDonates.append(divDonateItem)
         this.#donatesContainer.prepend(this.#donatesTextHTML)
@@ -43,5 +41,21 @@ export class DonateList {
 
         divDonateItem.append(amountDonates)
         return divDonateItem
+    }
+
+    renderDonate(donates) {
+        donates.forEach((donate) => {
+            this.#donatesContainer.append(this.renderItem(donate))
+        })
+    }
+
+    updateDonates(updatedDonates) {
+        let donatesContainerDonates = document.getElementsByClassName('donates-container__donates');
+        while(donatesContainerDonates.firstChild){
+            donatesContainerDonates.removeChild(donatesContainerDonates.firstChild)
+        }
+
+        this.renderDonate(updatedDonates)
+
     }
 }
