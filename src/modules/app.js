@@ -8,7 +8,6 @@ export default class App {
     state
 
     constructor() {
-        this.#donateForm = new DonateForm()
         this.state = {
             donates: [
                 {amount: 4, date: new Date()},
@@ -18,6 +17,7 @@ export default class App {
             ],
             totalAmount: 0
         }
+        this.#donateForm = new DonateForm(this.state.totalAmount)
     }
 
     run() {

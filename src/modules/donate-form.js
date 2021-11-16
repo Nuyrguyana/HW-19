@@ -1,9 +1,11 @@
 export class DonateForm {
     #container
+    #totalAmount
 
-    constructor() {
+    constructor(totalAmount) {
         this.#container = document.createElement('form')
         this.#container.className = 'donate-form'
+        this.#totalAmount = totalAmount
     }
 
     render() {
