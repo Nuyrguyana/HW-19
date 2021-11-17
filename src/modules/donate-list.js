@@ -3,15 +3,15 @@ import {resolveShowConfigPath} from "@babel/core/lib/config/files";
 export class DonateList {
     #donates
     #donatesTextHTML
-    #donatesContainer
+    donatesContainer
 
     constructor(donates) {
         this.#donates = donates
     }
 
     render() {
-        this.#donatesContainer = document.createElement('div')
-        this.#donatesContainer.className = 'donates-container'
+        this.donatesContainer = document.createElement('div')
+        this.donatesContainer.className = 'donates-container'
 
         this.#donatesTextHTML = document.createElement('h2')
         this.#donatesTextHTML.className = 'donates-container__title'
@@ -20,14 +20,14 @@ export class DonateList {
         const divDonatesContainerDonates = document.createElement('div')
         divDonatesContainerDonates.className = 'donates-container__donates'
 
-        this.renderDonate(this.#donates)
+        this.renderDonate(this.donatesContainer, this.#donates)
 
         // divDonatesContainerDonates.append(divDonateItem)
-        this.#donatesContainer.prepend(this.#donatesTextHTML)
-        this.#donatesContainer.append(divDonatesContainerDonates)
+        this.donatesContainer.prepend(this.#donatesTextHTML)
+        this.donatesContainer.append(divDonatesContainerDonates)
 
-        console.log(this.#donatesContainer)
-        return this.#donatesContainer
+        console.log(this.donatesContainer)
+        return this.donatesContainer
 
 
     }
@@ -43,19 +43,23 @@ export class DonateList {
         return divDonateItem
     }
 
-    renderDonate(donates) {
+    renderDonate(donatesContainer, donates) {
+        console.log(donates)
         donates.forEach((donate) => {
-            this.#donatesContainer.append(this.renderItem(donate))
+            console.log(donatesContainer)
+            donatesContainer.append(this.renderItem(donate))
         })
     }
 
     updateDonates(updatedDonates) {
-        let donatesContainerDonates = document.getElementsByClassName('donates-container__donates');
+        let donatesContainerDonates = document.querySelector('.donates-container__donates')
         while(donatesContainerDonates.firstChild){
             donatesContainerDonates.removeChild(donatesContainerDonates.firstChild)
         }
+        // document.querySelector('.donates-container__donates').innerHTML = ''
+        // const donateContainer = document.querySelector('.donates-container')
 
-        this.renderDonate(updatedDonates)
+        this.renderDonate(donatesContainerDonates, updatedDonates)
 
     }
 }
