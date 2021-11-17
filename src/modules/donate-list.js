@@ -1,4 +1,5 @@
-import {resolveShowConfigPath} from "@babel/core/lib/config/files";
+// import {resolveShowConfigPath} from "@babel/core/lib/config/files";
+import {Settings} from "../core/constants/settings";
 
 export class DonateList {
     #donates
@@ -37,7 +38,7 @@ export class DonateList {
         divDonateItem.className = 'donate-item'
         divDonateItem.textContent = donate.date
         const amountDonates = document.createElement('b')
-        amountDonates.textContent = donate.amount + '$'
+        amountDonates.textContent = donate.amount + `${Settings.currency}`
 
         divDonateItem.append(amountDonates)
         return divDonateItem
