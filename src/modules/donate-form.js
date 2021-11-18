@@ -1,5 +1,5 @@
 import {Settings as Set} from "../core/constants/settings";
-
+import * as Utils from "../core/utils/index"
 export class DonateForm {
     #container
     #totalAmount
@@ -44,7 +44,7 @@ export class DonateForm {
         input.type = 'number'
         input.max = '100'
         input.min = '0'
-        // input.required = ''
+        input.required = ''
 
         return input
     }
@@ -59,13 +59,13 @@ export class DonateForm {
 
     createH1Element() {
         const h1 = document.createElement('h1')
-        h1.className = 'total-amount'
+        h1.id = 'total-amount'
         h1.textContent = `${this.#totalAmount} ${Set.currency}`
         return h1
     }
 
     updateTotalAmount(newAmount) {
-        const totalAmountId = document.getElementById('#total-amount')
+        const totalAmountId = document.querySelector('#total-amount')
         totalAmountId.textContent = `${newAmount} ${Set.currency}`
     }
 
@@ -79,12 +79,11 @@ export class DonateForm {
             if (inputValue) {
                 const newDonate = {
                     amount: Number(inputValue),
-                    date: new Date()
+                    date: Utils.getFormattedTime(new Date())
                 }
-                console.log(newDonate)
                 this.createNewDonate(newDonate)
-                document.querySelector('.donate-form__donate-input').textContent = ''
-
+                let input = document.querySelector('.donate-form__donate-input')
+                    input.value = ''
 
             }
         })

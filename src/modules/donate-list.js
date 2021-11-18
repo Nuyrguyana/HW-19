@@ -1,5 +1,5 @@
 // import {resolveShowConfigPath} from "@babel/core/lib/config/files";
-import {Settings} from "../core/constants/settings";
+import {Settings} from "../core/constants/settings"
 
 export class DonateList {
     #donates
@@ -8,6 +8,7 @@ export class DonateList {
 
     constructor(donates) {
         this.#donates = donates
+
     }
 
     render() {
@@ -57,10 +58,12 @@ export class DonateList {
         while(donatesContainerDonates.firstChild){
             donatesContainerDonates.removeChild(donatesContainerDonates.firstChild)
         }
+
+
         // document.querySelector('.donates-container__donates').innerHTML = ''
         // const donateContainer = document.querySelector('.donates-container')
 
         this.renderDonate(donatesContainerDonates, updatedDonates)
-
     }
+
 }
