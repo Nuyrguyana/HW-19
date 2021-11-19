@@ -1,4 +1,3 @@
-// import {resolveShowConfigPath} from "@babel/core/lib/config/files";
 import {Settings} from "../core/constants/settings"
 
 export class DonateList {
@@ -8,7 +7,6 @@ export class DonateList {
 
     constructor(donates) {
         this.#donates = donates
-
     }
 
     render() {
@@ -22,13 +20,11 @@ export class DonateList {
         const divDonatesContainerDonates = document.createElement('div')
         divDonatesContainerDonates.className = 'donates-container__donates'
 
-        this.renderDonate(this.donatesContainer, this.#donates)
+        this.renderDonate(divDonatesContainerDonates, this.#donates)
 
-        // divDonatesContainerDonates.append(divDonateItem)
         this.donatesContainer.prepend(this.#donatesTextHTML)
         this.donatesContainer.append(divDonatesContainerDonates)
 
-        console.log(this.donatesContainer)
         return this.donatesContainer
 
 
@@ -46,9 +42,7 @@ export class DonateList {
     }
 
     renderDonate(donatesContainer, donates) {
-        console.log(donates)
         donates.forEach((donate) => {
-            console.log(donatesContainer)
             donatesContainer.append(this.renderItem(donate))
         })
     }
@@ -58,12 +52,6 @@ export class DonateList {
         while(donatesContainerDonates.firstChild){
             donatesContainerDonates.removeChild(donatesContainerDonates.firstChild)
         }
-
-
-        // document.querySelector('.donates-container__donates').innerHTML = ''
-        // const donateContainer = document.querySelector('.donates-container')
-
         this.renderDonate(donatesContainerDonates, updatedDonates)
     }
-
 }

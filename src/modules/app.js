@@ -5,7 +5,6 @@ import * as Utils from "../core/utils/index"
 export default class App {
     #donateForm
     state
-    #donateList
 
     mockDonates = [
         { amount: 4, date: Utils.getFormattedTime(new Date()) },
@@ -27,7 +26,6 @@ export default class App {
 
     run() {
         const donateFormHTML = this.#donateForm.render()
-        console.log('Hello world!')
         document.body.append(donateFormHTML)
 
         const donateListHTML = new DonateList(this.state.donates)
@@ -38,8 +36,6 @@ export default class App {
         this.state.donates.push(newDonate)
         this.state.totalAmount += newDonate.amount
         console.log(newDonate)
-        console.log(this.state.totalAmount)
-        console.log(this.#donateList)
         DonateList.prototype.updateDonates(this.state.donates)
         this.#donateForm.updateTotalAmount(this.state.totalAmount)
     }
